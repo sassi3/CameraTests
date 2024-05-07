@@ -9,6 +9,8 @@ import org.bytedeco.opencv.opencv_core.FileStorage;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Integer.MAX_VALUE;
+
 public class Camera extends CameraDevice {
     OpenCVFrameGrabber frameGrabber;
     OpenCVFrameRecorder frameRecorder;
@@ -17,30 +19,23 @@ public class Camera extends CameraDevice {
     public Camera(String name) {
         super(name);
     }
-
     public Camera(String name, String filename) throws Exception {
         super(name, filename);
     }
-
     public Camera(Settings settings) throws Exception {
         super(settings);
     }
-
     public Camera(String name, FileStorage fs) throws Exception {
         super(name, fs);
     }
 
+    // ------ GETTERS AND SETTERS ------
     public OpenCVFrameGrabber getOpenCVFrameGrabber() {
         return frameGrabber;
     }
-    // ------ GETTERS AND SETTERS
+
     public OpenCVFrameGrabber getGrabber() {
         return frameGrabber;
-    }
-
-
-    public void setGrabber(OpenCVFrameGrabber grabber) {
-        this.frameGrabber = grabber;
     }
 
     public void setOpenCVFrameGrabber(OpenCVFrameGrabber frameGrabber) {
@@ -51,36 +46,21 @@ public class Camera extends CameraDevice {
         return frameRecorder;
     }
 
-
     public void setFrameRecorder(OpenCVFrameRecorder frameRecorder) {
         this.frameRecorder = frameRecorder;
     }
 
-    // ----- FRAMEGRABBER METHODS -------
-    public void createDefaultOpenCVFrameGrabber() {
-        this.frameGrabber = new OpenCVFrameGrabber(0);
-    }
-
-    public static OpenCVFrameGrabber createOpenCvFrameGrabber(int index) throws FrameGrabber.Exception {
-        return OpenCVFrameGrabber.createDefault(index);
-    }
-
-    //Should be tested, could be moved into a dedicated thread
+    // Should be tested
     public static List<OpenCVFrameGrabber> createOpenCvFrameGrabberList(int index) {
-        List<OpenCVFrameGrabber> list = new ArrayList<>();
-        int i = 0;
-        while(true){
-            try {
-                list.add(createOpenCvFrameGrabber(i));
+        List<OpenCVFrameGrabber> grabbers = new ArrayList<>();
+        try {
+            for (int deviceIndex = 0; deviceIndex < MAX_VALUE; deviceIndex++) {
+                grabbers.addLast(OpenCVFrameGrabber.createDefault(deviceIndex));
             }
-            catch (FrameGrabber.Exception e){
-                break;
-            }
-            ++i;
         }
-        return list;
+        catch (FrameGrabber.Exception e){
+            return grabbers;
+        }
+        return grabbers;
     }
-
-    // ----- FRAMERECORDER METHODS -------
-
 }
