@@ -61,12 +61,12 @@ public class Camera extends CameraDevice {
         this.frameGrabber = new OpenCVFrameGrabber(0);
     }
 
-    public OpenCVFrameGrabber createOpenCvFrameGrabber(int index) throws FrameGrabber.Exception {
+    public static OpenCVFrameGrabber createOpenCvFrameGrabber(int index) throws FrameGrabber.Exception {
         return OpenCVFrameGrabber.createDefault(index);
     }
 
-    //Should be tested
-    public List<OpenCVFrameGrabber> createOpenCvFrameGrabberList(int index) {
+    //Should be tested, could be moved into a dedicated thread
+    public static List<OpenCVFrameGrabber> createOpenCvFrameGrabberList(int index) {
         List<OpenCVFrameGrabber> list = new ArrayList<>();
         int i = 0;
         while(true){
@@ -81,5 +81,6 @@ public class Camera extends CameraDevice {
         return list;
     }
 
+    // ----- FRAMERECORDER METHODS -------
 
 }
