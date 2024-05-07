@@ -3,13 +3,15 @@ package org.example.cameratests;
 import org.bytedeco.javacv.CameraDevice;
 import org.bytedeco.javacv.FrameGrabber;
 import org.bytedeco.javacv.OpenCVFrameGrabber;
+import org.bytedeco.javacv.OpenCVFrameRecorder;
 import org.bytedeco.opencv.opencv_core.FileStorage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Camera extends CameraDevice {
-    OpenCVFrameGrabber grabber;
+    OpenCVFrameGrabber frameGrabber;
+    OpenCVFrameRecorder frameRecorder;
 
     //------ CONSTRUCTOR ------
     public Camera(String name) {
@@ -29,12 +31,13 @@ public class Camera extends CameraDevice {
     }
 
     public OpenCVFrameGrabber getOpenCVFrameGrabber() {
-        return grabber;
+        return frameGrabber;
     }
     // ------ GETTERS AND SETTERS
     public OpenCVFrameGrabber getGrabber() {
         return grabber;
     }
+
 
     public void setGrabber(OpenCVFrameGrabber grabber) {
         this.grabber = grabber;
@@ -65,4 +68,16 @@ public class Camera extends CameraDevice {
     }
 
 
+    public void setOpenCVFrameGrabber(OpenCVFrameGrabber frameGrabber) {
+        this.frameGrabber = frameGrabber;
+    }
+
+    public OpenCVFrameRecorder getFrameRecorder() {
+        return frameRecorder;
+    }
+
+
+    public void setFrameRecorder(OpenCVFrameRecorder frameRecorder) {
+        this.frameRecorder = frameRecorder;
+    }
 }
