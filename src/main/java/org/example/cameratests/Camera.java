@@ -27,9 +27,7 @@ public class Camera extends CameraDevice {
         return grabber;
     }
 
-    public void createDefaultOpenCVFrameGrabber() {
-        this.grabber = new OpenCVFrameGrabber(0);
+    public void setOpenCVFrameGrabber(int deviceNumber) {
+        this.grabber = new OpenCVFrameGrabber(deviceNumber);
     }
-
-
 }
