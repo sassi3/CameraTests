@@ -35,16 +35,30 @@ public class Camera extends CameraDevice {
     }
     // ------ GETTERS AND SETTERS
     public OpenCVFrameGrabber getGrabber() {
-        return grabber;
+        return frameGrabber;
     }
 
 
     public void setGrabber(OpenCVFrameGrabber grabber) {
-        this.grabber = grabber;
+        this.frameGrabber = grabber;
     }
+
+    public void setOpenCVFrameGrabber(OpenCVFrameGrabber frameGrabber) {
+        this.frameGrabber = frameGrabber;
+    }
+
+    public OpenCVFrameRecorder getFrameRecorder() {
+        return frameRecorder;
+    }
+
+
+    public void setFrameRecorder(OpenCVFrameRecorder frameRecorder) {
+        this.frameRecorder = frameRecorder;
+    }
+
     // ----- FRAMEGRABBER METHODS -------
     public void createDefaultOpenCVFrameGrabber() {
-        this.grabber = new OpenCVFrameGrabber(0);
+        this.frameGrabber = new OpenCVFrameGrabber(0);
     }
 
     public OpenCVFrameGrabber createOpenCvFrameGrabber(int index) throws FrameGrabber.Exception {
@@ -68,16 +82,4 @@ public class Camera extends CameraDevice {
     }
 
 
-    public void setOpenCVFrameGrabber(OpenCVFrameGrabber frameGrabber) {
-        this.frameGrabber = frameGrabber;
-    }
-
-    public OpenCVFrameRecorder getFrameRecorder() {
-        return frameRecorder;
-    }
-
-
-    public void setFrameRecorder(OpenCVFrameRecorder frameRecorder) {
-        this.frameRecorder = frameRecorder;
-    }
 }
