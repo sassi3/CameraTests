@@ -2,32 +2,33 @@ package org.example.cameratests;
 
 import org.bytedeco.javacv.CameraDevice;
 import org.bytedeco.javacv.OpenCVFrameGrabber;
-import org.bytedeco.javacv.ProjectiveDevice;
+import org.bytedeco.opencv.opencv_core.FileStorage;
 
-public class Camera {
-    CameraDevice camera;
-    CameraDevice.Settings cameraSettings;
+public class Camera extends CameraDevice {
+    OpenCVFrameGrabber grabber;
 
-    public Camera(CameraDevice.Settings cameraSettings) {
-        try {
-            this.cameraSettings = cameraSettings;
-            this.camera = new CameraDevice(cameraSettings);
-        } catch (ProjectiveDevice.Exception e) {
-            System.err.println("Error creating CameraDevice.");
-            throw new RuntimeException(e);
-        }
-        cameraSettings.setFrameGrabber(OpenCVFrameGrabber.class);
+    public Camera(String name) {
+        super(name);
     }
 
-    public CameraDevice getCamera() {
-        return camera;
+    public Camera(String name, String filename) throws Exception {
+        super(name, filename);
     }
 
-    public CameraDevice.Settings getCameraSettings() {
-        return cameraSettings;
+    public Camera(Settings settings) throws Exception {
+        super(settings);
     }
 
-    public void setCameraSettings(CameraDevice.Settings cameraSettings) {
-        this.cameraSettings = cameraSettings;
+    public Camera(String name, FileStorage fs) throws Exception {
+        super(name, fs);
     }
-}
+
+    public OpenCVFrameGrabber getOpenCVFrameGrabber() {
+        return grabber;
+    }
+
+    public void createOpenCVFrameGrabber() {
+        this.grabber = new OpenCVFrameGrabber(0);
+    }
+
+    }
