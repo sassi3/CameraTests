@@ -1,9 +1,6 @@
 package org.example.cameratests;
 
-import org.bytedeco.javacv.CameraDevice;
-import org.bytedeco.javacv.FrameGrabber;
-import org.bytedeco.javacv.OpenCVFrameGrabber;
-import org.bytedeco.javacv.OpenCVFrameRecorder;
+import org.bytedeco.javacv.*;
 import org.bytedeco.opencv.opencv_core.FileStorage;
 
 import java.util.ArrayList;
@@ -82,5 +79,20 @@ public class Camera extends CameraDevice {
     }
 
     // ----- FRAMERECORDER METHODS -------
+
+    // -------- START AND STOP -----------
+    public void frameGrabberStart() throws FrameGrabber.Exception {
+        frameGrabber.start();
+    }
+
+    public void frameGrabberStop() throws FrameGrabber.Exception {
+        frameGrabber.stop();
+    }
+    public void frameRecorderStart() throws FrameRecorder.Exception {
+        frameRecorder.start();
+    }
+    public void frameRecorderStop() throws FrameRecorder.Exception {
+        frameRecorder.stop();
+    }
 
 }
